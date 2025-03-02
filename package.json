@@ -1,0 +1,42 @@
+{
+    "name": "ts-backend-2025",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "ts-node src/index.ts",
+        "build": "tsc && npm run copy-dist-files",
+        "build-start": "npm run build && node dist/index.js",
+        "copy-dist-files": "npm run copy-dist-views && npm run copy-dist-public && npm run copy-dist-env && npm run copy-dist-package-json",
+        "copy-dist-views": "xcopy /E /I /Y src\\views dist\\views",
+        "copy-dist-public": "xcopy /E /I /Y src\\public dist\\public",
+        "copy-dist-env": "copy .env dist\\.env",
+        "copy-dist-package-json": "copy package.json dist\\ && npm run prepare-dist-package-json",
+        "prepare-dist-package-json": "ts-node src/commands/prepare-dist-package-json.ts",
+        "config-app-secret": "ts-node src/commands/config-app-secret.ts",
+        "reset-database": "ts-node src/commands/reset-database.ts"
+    },
+    "author": "Leonardo Bravo Estácio",
+    "license": "ISC",
+    "description": "Back-end construido com Node.js e TypeScript",
+    "devDependencies": {
+        "@types/csurf": "^1.11.5",
+        "@types/dotenv": "^8.2.3",
+        "@types/express": "^5.0.0",
+        "@types/express-session": "^1.18.1",
+        "@types/hbs": "^4.0.4",
+        "@types/method-override": "^3.0.0",
+        "@types/node": "^22.13.8",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.2"
+    },
+    "dependencies": {
+        "csurf": "^1.10.0",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "express-session": "^1.18.1",
+        "hbs": "^4.2.0",
+        "method-override": "^3.0.0",
+        "mysql2": "^3.12.0"
+    }
+}
