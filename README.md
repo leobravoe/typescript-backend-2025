@@ -37,6 +37,11 @@
     npm run dev
     ```
 
+8. Podemons gerar a build (criar a pasta /dist) e também executar ela:
+    ```bash
+    npm run build-start
+    ```
+
 ### Caso já tenha o projeto clonado:
 
 1. Restaure o estado original do repositório:
