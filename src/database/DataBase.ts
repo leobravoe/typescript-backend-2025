@@ -1,4 +1,4 @@
-import mysql2, { Connection, RowDataPacket } from "mysql2/promise";
+import mysql2, { Connection, QueryResult } from "mysql2/promise";
 import * as dotenv from "dotenv";
 import fs from "fs/promises";
 
@@ -9,17 +9,17 @@ class DataBase {
      * Abre uma conexão com o Banco de Dados, realiza uma consulta e depois fecha a conexão.
      * @param {string} sql SQL para ser executado no Banco de Dados.
      * @param {any[]} params Array de parâmetros que serão substituídos pelos ? na consulta SQL.
-     * @returns {Promise<RowDataPacket[]>} Retorna um array de objetos com os resultados da consulta.
+     * @returns {Promise<QueryResult>} Retorna um array de objetos com os resultados da consulta.
      */
-    static async executeSQLQuery(sql: string, params: any[] = []): Promise<RowDataPacket[]> {
+    static async executeSQLQuery(sql: string, params: any[] = []): Promise<QueryResult> {
         const connection: Connection = await mysql2.createConnection({
             host: process.env.DB_HOST,
             database: process.env.DB_NAME,
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD
         });
-        
-        const [rows] = await connection.execute<RowDataPacket[]>(sql, params);
+
+        const [rows] = await connection.execute(sql, params);
         await connection.end();
         return rows;
     }
@@ -44,7 +44,7 @@ class DataBase {
         for (const command of commands) {
             await connection.query(command);
         }
-        
+
         await connection.end();
     }
 }

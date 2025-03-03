@@ -42,7 +42,7 @@ class MesaModel {
      */
     static async findOne(id: number): Promise<MesaModel | null> {
         const result = await DataBase.executeSQLQuery(`SELECT * FROM Mesa WHERE id = ?`, [id]);
-        return result?.length ? new MesaModel(result[0] as IMesa) : null;
+        return Array.isArray(result) && result.length ? new MesaModel(result[0] as IMesa) : null;
     }
 
     /**
