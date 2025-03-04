@@ -29,14 +29,7 @@ class UsuarioModel {
      * @param {IUsuario} usuario - Objeto contendo os dados do usuário.
      */
     constructor(usuario?: IUsuario) {
-        if (usuario) {
-            this.id = usuario.id ?? null;
-            this.nome = usuario.nome;
-            this.email = usuario.email;
-            this.senha = usuario.senha;
-            this.dataAtualizacao = usuario.dataAtualizacao ?? null;
-            this.dataCriacao = usuario.dataCriacao ?? null;
-        }
+        Object.assign(this, usuario ?? {});
     }
 
     /**

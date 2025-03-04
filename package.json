@@ -4,7 +4,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "dev": "ts-node src/index.ts",
+        "dev": "nodemon src/index.ts",
         "build": "tsc && npm run copy-dist-files",
         "build-start": "npm run build && node dist/index.js",
         "copy-dist-files": "npm run copy-dist-views && npm run copy-dist-public && npm run copy-dist-env && npm run copy-dist-package-json",
@@ -27,6 +27,7 @@
         "@types/hbs": "^4.0.4",
         "@types/method-override": "^3.0.0",
         "@types/node": "^22.13.8",
+        "nodemon": "^3.1.9",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2"
     },

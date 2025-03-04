@@ -15,7 +15,7 @@ const app: Application = express();
 
 // Configurações do servidor
 const isDevMode = process.env.npm_lifecycle_event === 'dev';
-if(isDevMode) console.log("Rodando em modo de desenvolvimento.");
+if(isDevMode) console.log("Executando em modo de desenvolvimento.");
 
 const rootDir = isDevMode ? path.join(__dirname, '../../src') : path.join(__dirname, '..');
 

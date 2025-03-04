@@ -64,7 +64,7 @@ class WebUsuarioController {
 
             const usuario = new UsuarioModel({ nome, email, senha });
             await usuario.save();
-            req.session.message = ["success", "Usuário cadastrado com sucesso."];
+            req.session.message = ["success", `Usuário ${usuario.nome} cadastrado com sucesso.`];
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
         }
@@ -99,7 +99,7 @@ class WebUsuarioController {
                     csrfToken: req.csrfToken()
                 });
             }
-            req.session.message = ["warning", "Usuário não encontrado."];
+            req.session.message = ["warning", `Usuário ${req.params.id} não encontrado.`];
         } catch (error) {
             req.session.message = ["danger", JSON.stringify(error)];
         }
@@ -110,7 +110,7 @@ class WebUsuarioController {
         try {
             const usuario = await UsuarioModel.findOne(Number(req.params.id));
             if (!usuario) {
-                req.session.message = ["warning", "Usuário não encontrado."];
+                req.session.message = ["warning", `Usuário ${req.params.id} não encontrado.`];
                 return res.redirect("/usuario");
             }
 
