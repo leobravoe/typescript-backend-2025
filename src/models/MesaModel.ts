@@ -1,15 +1,5 @@
 import DataBase from "../database/DataBase";
-
-/**
- * Interface que define a estrutura de um objeto Mesa.
- */
-interface IMesa {
-    id?: number;
-    numero: number;
-    estado: string;
-    dataAtualizacao?: string;
-    dataCriacao?: string;
-}
+import IMesa from "../interfaces/IMesa";
 
 /**
  * Classe que representa uma Mesa e interage com o banco de dados.
@@ -22,7 +12,7 @@ class MesaModel {
     dataCriacao: string | null = null;
 
     /**
-     * Construtor da classe MesaModel.
+     * Construtor da classe `MesaModel`.
      * @param {IMesa} [mesa] - Objeto contendo os dados da mesa (opcional).
      */
     constructor(mesa?: IMesa) {
@@ -32,22 +22,26 @@ class MesaModel {
     /**
      * Busca uma mesa no banco de dados pelo ID.
      * @param {number} id - ID da mesa a ser procurada.
-     * @returns {Promise<MesaModel | null>} Retorna um objeto MesaModel se encontrado, ou null caso contrário.
+     * @returns {Promise<MesaModel | null>} Retorna um objeto `MesaModel` se encontrado, ou null caso contrário.
      */
     static async findOne(id: number): Promise<MesaModel | null> {
-        if (!id) return null; // Validação explícita
+        if (!id) return null;
 
         const result = await DataBase.executeSQLQuery(
             `SELECT * FROM Mesa WHERE id = ? LIMIT 1`,
             [id]
         );
 
-        return Array.isArray(result) && result.length === 1 ? new MesaModel(result[0] as IMesa) : null;
+        if(Array.isArray(result) && result.length === 1){
+            return new MesaModel(result[0] as IMesa);
+        }
+
+        return null;
     }
 
     /**
-     * Busca todas as mesas registradas no banco de dados.
-     * @returns {Promise<MesaModel[]>} Retorna um array de objetos MesaModel.
+     * Busca todas as mesas no banco de dados.
+     * @returns {Promise<MesaModel[]>} Retorna um array de objetos `MesaModel`.
      */
     static async findAll(): Promise<MesaModel[]> {
         const result = await DataBase.executeSQLQuery(`SELECT * FROM Mesa`);
@@ -61,12 +55,10 @@ class MesaModel {
 
     /**
      * Insere um novo registro de mesa no banco de dados.
-     * @returns {Promise<MesaModel | null>} Retorna um objeto MesaModel com os dados recém-inseridos ou null em caso de falha.
+     * @returns {Promise<MesaModel | null>} Retorna um objeto `MesaModel` com os dados recém-inseridos ou null em caso de falha.
      */
     async save(): Promise<MesaModel | null> {
-        if (!this.numero || !this.estado) {
-            throw new Error("Número e estado da mesa são obrigatórios.");
-        }
+        if (!this.numero || !this.estado) throw new Error("Número e estado da mesa são obrigatórios.");
 
         const timestamp = new Date().toISOString().slice(0, 19).replace("T", " ");
 
@@ -86,17 +78,12 @@ class MesaModel {
 
 
     /**
-     * Atualiza um registro de mesa no banco de dados.
-     * @returns {Promise<MesaModel | null>} Retorna um objeto MesaModel com os dados atualizados.
+     * Atualiza uma mesa no banco de dados.
+     * @returns {Promise<MesaModel | null>} Retorna um objeto `MesaModel` com os dados atualizados.
      */
     async update(): Promise<MesaModel | null> {
-        if (!this.id) {
-            throw new Error("ID da mesa não informado.");
-        }
-
-        if (this.numero === null || this.estado === null) {
-            throw new Error("Número e estado da mesa são obrigatórios para atualização.");
-        }
+        if (!this.id) throw new Error("ID da mesa não informado.");
+        if (this.numero === null || this.estado === null) throw new Error("Número e estado da mesa são obrigatórios para atualização.");
 
         const timestamp = new Date().toISOString().slice(0, 19).replace("T", " ");
 
@@ -116,19 +103,15 @@ class MesaModel {
 
 
     /**
-     * Remove um registro de mesa do banco de dados.
+     * Remove uma mesa do banco de dados.
      * @returns {Promise<MesaModel | null>} Retorna a instância de `MesaModel` antes da remoção ou `null` se a mesa não existir.
      */
     async delete(): Promise<MesaModel | null> {
-        if (!this.id) {
-            throw new Error("ID da mesa não informado.");
-        }
+        if (!this.id) throw new Error("ID da mesa não informado.");
 
         // Busca a mesa antes da remoção para retornar seus dados
         const mesaRemovida = await MesaModel.findOne(this.id);
-        if (!mesaRemovida) {
-            return null; // Retorna `null` se a mesa não existir
-        }
+        if (!mesaRemovida) return null; // Retorna `null` se a mesa não existir
 
         const result = await DataBase.executeSQLQuery(`
             DELETE FROM Mesa WHERE id = ?`, 

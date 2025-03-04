@@ -1,17 +1,6 @@
 import DataBase from "../database/DataBase";
+import IUsuario from "../interfaces/IUsuario";
 import crypto from "crypto";
-
-/**
- * Interface que define a estrutura de um objeto Usuario.
- */
-interface IUsuario {
-    id?: number;
-    nome: string;
-    email: string;
-    senha: string;
-    dataAtualizacao?: string;
-    dataCriacao?: string;
-}
 
 /**
  * Classe que representa um Usuario e interage com o banco de dados.
@@ -25,7 +14,7 @@ class UsuarioModel {
     dataCriacao: string | null = null;
 
     /**
-     * Construtor da classe UsuarioModel.
+     * Construtor da classe `UsuarioModel`.
      * @param {IUsuario} usuario - Objeto contendo os dados do usuário.
      */
     constructor(usuario?: IUsuario) {
@@ -35,7 +24,7 @@ class UsuarioModel {
     /**
      * Busca um usuário no banco de dados pelo ID.
      * @param {number | null} id - ID do usuário a ser procurado.
-     * @returns {Promise<UsuarioModel | null>} Retorna um objeto UsuarioModel se encontrado, ou null caso contrário.
+     * @returns {Promise<UsuarioModel | null>} Retorna um objeto `UsuarioModel` se encontrado, ou null caso contrário.
      */
     static async findOne(id: number | null): Promise<UsuarioModel | null> {
         if (!id) return null;
@@ -45,13 +34,17 @@ class UsuarioModel {
             [id]
         );
 
-        return Array.isArray(result) && result.length === 1 ? new UsuarioModel(result[0] as IUsuario) : null;
+        if(Array.isArray(result) && result.length === 1){
+            return new UsuarioModel(result[0] as IUsuario);
+        }
+
+        return  null;
     }
 
     /**
      * Busca um usuário no banco de dados pelo email.
      * @param {string} email - Email do usuário a ser procurado.
-     * @returns {Promise<UsuarioModel | null>} Retorna um objeto UsuarioModel se encontrado, ou null caso contrário.
+     * @returns {Promise<UsuarioModel | null>} Retorna um objeto `UsuarioModel` se encontrado, ou null caso contrário.
      */
     static async findOneByEmail(email: string): Promise<UsuarioModel | null> {
         const normalizedEmail = email.trim().toLowerCase(); // 🔹 Normaliza o e-mail antes da busca
