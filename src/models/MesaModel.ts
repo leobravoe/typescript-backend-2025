@@ -128,4 +128,4 @@ class MesaModel {
 
 }
 
-export default MesaModel;
+export { MesaModel };

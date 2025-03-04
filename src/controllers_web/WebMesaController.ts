@@ -1,12 +1,6 @@
-import { Request as ExpressRequest, Response } from "express";
-import MesaModel from "../models/MesaModel";
-import { Session } from "express-session";
-
-interface Request extends ExpressRequest {
-    session: Session & {
-        message?: [string, string];
-    };
-}
+import { Response } from "express";
+import { ICustomRequest as Request } from "../interfaces/ICustomRequest";
+import { MesaModel } from "../models/MesaModel";
 
 class WebMesaController {
     /**

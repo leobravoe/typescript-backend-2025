@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { ICustomRequest as Request } from "../interfaces/ICustomRequest";
-import UsuarioModel from "../models/UsuarioModel";
+import { UsuarioModel } from "../models/UsuarioModel";
 
 class WebUsuarioController {
     async index(req: Request, res: Response): Promise<void> {

@@ -206,4 +206,4 @@ class UsuarioModel {
     }
 }
 
-export default UsuarioModel;
+export { UsuarioModel };
