@@ -1,4 +1,4 @@
-import express, { Application } from "express";
+import express, { Application as IApplication } from "express";
 import methodOverride from "method-override";
 import session from "express-session";
 import csurf from "csurf";
@@ -6,18 +6,18 @@ import * as dotenv from "dotenv";
 import webRoutes from "../routes/web";
 // import apiRoutes from "../routes/api";
 import path from "path";
-import HbsConfigureCustomHelpers from "../hbs_config/HbsConfigureCustomHelpers";
+import { HbsConfigureCustomHelpers } from "../hbs_config/HbsConfigureCustomHelpers";
 
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();
 
-const app: Application = express();
+const app: IApplication = express();
 
 // Configurações do servidor
-const isDevMode = process.env.npm_lifecycle_event === 'dev';
-if(isDevMode) console.log("Executando em modo de desenvolvimento.");
+const isDevMode: boolean = process.env.npm_lifecycle_event === 'dev';
+if (isDevMode) console.log("Executando em modo de desenvolvimento.");
 
-const rootDir = isDevMode ? path.join(__dirname, '../../src') : path.join(__dirname, '..');
+const rootDir: string = isDevMode ? path.join(__dirname, '../../src') : path.join(__dirname, '..');
 
 app.set("port", process.env.PORT || 5000);
 app.set("view engine", "hbs");

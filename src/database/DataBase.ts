@@ -49,4 +49,4 @@ class DataBase {
     }
 }
 
-export default DataBase;
+export { DataBase };

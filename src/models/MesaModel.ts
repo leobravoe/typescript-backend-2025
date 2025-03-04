@@ -1,5 +1,5 @@
-import DataBase from "../database/DataBase";
-import IMesa from "../interfaces/IMesa";
+import { DataBase } from "../database/DataBase";
+import { IMesa } from "../interfaces/IMesa";
 
 /**
  * Classe que representa uma Mesa e interage com o banco de dados.

@@ -1,5 +1,5 @@
-import DataBase from "../database/DataBase";
-import IUsuario from "../interfaces/IUsuario";
+import { DataBase } from "../database/DataBase";
+import { IUsuario } from "../interfaces/IUsuario";
 import crypto from "crypto";
 
 /**

@@ -1,13 +1,6 @@
-import { Request as ExpressRequest, Response } from "express";
+import { Response } from "express";
+import { ICustomRequest as Request } from "../interfaces/ICustomRequest";
 import UsuarioModel from "../models/UsuarioModel";
-import { Session } from "express-session";
-
-interface Request extends ExpressRequest {
-    session: Session & {
-        message?: [string, string];
-        usuario?: { id: number | null; nome: string | null; email: string | null };
-    };
-}
 
 class WebUsuarioController {
     async index(req: Request, res: Response): Promise<void> {

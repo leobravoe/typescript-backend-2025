@@ -11,4 +11,4 @@ class HbsConfigureCustomHelpers {
     }
 }
 
-export default HbsConfigureCustomHelpers;
+export { HbsConfigureCustomHelpers };
