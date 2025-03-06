@@ -1,5 +1,5 @@
 import { DataBase } from "../database/DataBase";
-import { IUsuario } from "../interfaces/IUsuario";
+import { IUsuario } from "../interfaces/entities/IUsuario";
 import crypto from "crypto";
 
 /**

@@ -5,12 +5,12 @@ import { Session } from "express-session";
  * Interface personalizada para estender o objeto `Request` do Express,
  * adicionando propriedades personalizadas à sessão do usuário.
  *
- * @interface ICustomRequest
+ * @interface ICustomExpressRequest
  * @extends {ExpressRequest}
  *
  * @property {Session & ICustomSession} session - Sessão do usuário, estendida com propriedades adicionais.
  */
-interface ICustomRequest extends ExpressRequest {
+interface ICustomExpressRequest extends ExpressRequest {
     session: Session & {
         /**
          * Mensagem temporária para feedback ao usuário.
@@ -34,4 +34,4 @@ interface ICustomRequest extends ExpressRequest {
     };
 }
 
-export { ICustomRequest };
+export { ICustomExpressRequest };

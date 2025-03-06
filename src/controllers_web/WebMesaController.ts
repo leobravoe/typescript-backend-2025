@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { ICustomRequest as Request } from "../interfaces/ICustomRequest";
+import { ICustomExpressRequest as Request } from "../interfaces/ICustomExpressRequest";
 import { MesaModel } from "../models/MesaModel";
 
 class WebMesaController {

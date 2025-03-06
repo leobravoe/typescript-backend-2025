@@ -2,7 +2,7 @@ import { Router, Request, Response } from "express";
 import webSessionAuthMiddleware from "../route_middlewares/webSessionAuthMiddleware";
 import webMesaController from "../controllers_web/WebMesaController";
 import webUsuarioController from "../controllers_web/WebUsuarioController";
-// import webProdutoController from "../controllers_web/WebProdutoController";
+import webProdutoController from "../controllers_web/WebProdutoController";
 // import webTipoProdutoController from "../controllers_web/WebTipoProdutoController";
 
 const router: Router = Router();
@@ -26,13 +26,13 @@ router.delete("/mesa/:mesaId", webSessionAuthMiddleware, webMesaController.destr
 // router.delete("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.destroy);
 
 // Rotas de Produto
-// router.get("/produto", webSessionAuthMiddleware, webProdutoController.index);
-// router.get("/produto/create", webSessionAuthMiddleware, webProdutoController.create);
-// router.post("/produto", webSessionAuthMiddleware, webProdutoController.store);
-// router.get("/produto/:produtoId", webSessionAuthMiddleware, webProdutoController.show);
-// router.get("/produto/:produtoId/edit", webSessionAuthMiddleware, webProdutoController.edit);
-// router.put("/produto/:produtoId", webSessionAuthMiddleware, webProdutoController.update);
-// router.delete("/produto/:produtoId", webSessionAuthMiddleware, webProdutoController.destroy);
+router.get("/produto", webSessionAuthMiddleware, webProdutoController.index);
+router.get("/produto/create", webSessionAuthMiddleware, webProdutoController.create);
+router.post("/produto", webSessionAuthMiddleware, webProdutoController.store);
+router.get("/produto/:produtoId", webSessionAuthMiddleware, webProdutoController.show);
+router.get("/produto/:produtoId/edit", webSessionAuthMiddleware, webProdutoController.edit);
+router.put("/produto/:produtoId", webSessionAuthMiddleware, webProdutoController.update);
+router.delete("/produto/:produtoId", webSessionAuthMiddleware, webProdutoController.destroy);
 
 // // Rotas de Usuário
 router.get("/usuario/login", webUsuarioController.loginForm);
