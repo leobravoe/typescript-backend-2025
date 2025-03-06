@@ -1,4 +1,4 @@
-import DataBase from "../database/DataBase";
+import { DataBase } from "../database/DataBase";
 
 (async () => {
     try {
