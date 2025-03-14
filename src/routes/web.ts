@@ -3,7 +3,7 @@ import webSessionAuthMiddleware from "../route_middlewares/webSessionAuthMiddlew
 import webMesaController from "../controllers_web/WebMesaController";
 import webUsuarioController from "../controllers_web/WebUsuarioController";
 import webProdutoController from "../controllers_web/WebProdutoController";
-// import webTipoProdutoController from "../controllers_web/WebTipoProdutoController";
+import webTipoProdutoController from "../controllers_web/WebTipoProdutoController";
 
 const router: Router = Router();
 
@@ -17,13 +17,13 @@ router.put("/mesa/:mesaId", webSessionAuthMiddleware, webMesaController.update);
 router.delete("/mesa/:mesaId", webSessionAuthMiddleware, webMesaController.destroy);
 
 // Rotas de TipoProduto
-// router.get("/tipoproduto", webSessionAuthMiddleware, webTipoProdutoController.index);
-// router.get("/tipoproduto/create", webSessionAuthMiddleware, webTipoProdutoController.create);
-// router.post("/tipoproduto", webSessionAuthMiddleware, webTipoProdutoController.store);
-// router.get("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.show);
-// router.get("/tipoproduto/:tipoProdutoId/edit", webSessionAuthMiddleware, webTipoProdutoController.edit);
-// router.put("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.update);
-// router.delete("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.destroy);
+router.get("/tipoproduto", webSessionAuthMiddleware, webTipoProdutoController.index);
+router.get("/tipoproduto/create", webSessionAuthMiddleware, webTipoProdutoController.create);
+router.post("/tipoproduto", webSessionAuthMiddleware, webTipoProdutoController.store);
+router.get("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.show);
+router.get("/tipoproduto/:tipoProdutoId/edit", webSessionAuthMiddleware, webTipoProdutoController.edit);
+router.put("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.update);
+router.delete("/tipoproduto/:tipoProdutoId", webSessionAuthMiddleware, webTipoProdutoController.destroy);
 
 // Rotas de Produto
 router.get("/produto", webSessionAuthMiddleware, webProdutoController.index);
