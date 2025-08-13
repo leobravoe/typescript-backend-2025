@@ -22,22 +22,22 @@
     "devDependencies": {
         "@types/csurf": "^1.11.5",
         "@types/dotenv": "^8.2.3",
-        "@types/express": "^5.0.0",
-        "@types/express-session": "^1.18.1",
-        "@types/hbs": "^4.0.4",
+        "@types/express": "^5.0.3",
+        "@types/express-session": "^1.18.2",
+        "@types/hbs": "^4.0.5",
         "@types/method-override": "^3.0.0",
-        "@types/node": "^22.13.9",
-        "nodemon": "^3.1.9",
+        "@types/node": "^22.17.1",
+        "nodemon": "^3.1.10",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.2"
+        "typescript": "^5.9.2"
     },
     "dependencies": {
-        "csurf": "^1.10.0",
-        "dotenv": "^16.4.7",
+        "csurf": "^1.11.0",
+        "dotenv": "^16.6.1",
         "express": "^4.21.2",
-        "express-session": "^1.18.1",
+        "express-session": "^1.18.2",
         "hbs": "^4.2.0",
         "method-override": "^3.0.0",
-        "mysql2": "^3.13.0"
+        "mysql2": "^3.14.3"
     }
 }

@@ -11,7 +11,7 @@ class WebProdutoController {
         try {
             const message = req.session.message || null;
             if (message) delete req.session.message;
-            const produtos = await ProdutoModel.findAllWithTipoProdutoDescricao();
+            const produtos = await ProdutoModel.findAllWithTipoDescricao();
             return res.render("produto/index", {
                 layout: "layouts/main",
                 title: "Index de Produto",
@@ -71,7 +71,7 @@ class WebProdutoController {
     */
     async show(req: Request, res: Response): Promise<void> {
         try {
-            const produto = await ProdutoModel.findOneWithTipoProdutoDescricao(Number(req.params.produtoId));
+            const produto = await ProdutoModel.findOneWithTipoDescricao(Number(req.params.produtoId));
             if (produto) {
                 return res.render("produto/show", {
                     layout: "layouts/main",
